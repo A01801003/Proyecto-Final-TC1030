@@ -43,7 +43,6 @@ void VideoEngine::loadVideos(string filename) {
         vector<string> tokens = split(line, ' ');
         // Process the tokens
         if (tokens[0] == "movie") {
-            // cout<<"movie\n";
             int ID = stoi(tokens[1]);
             string title = tokens[2];
             string duration = tokens[3];
@@ -52,14 +51,12 @@ void VideoEngine::loadVideos(string filename) {
             Movie movie(ID, title, rating, duration, stringToGenre(genreStr));
             movies_.push_back(movie);
         } else if (tokens[0] == "series") {
-            // cout<<"series\n";
             int ID = stoi(tokens[1]);
             string title = tokens[2];
             string genreStr = tokens[3];
             Series series(ID, title, stringToGenre(genreStr));
             series_.push_back(series);
         } else if (tokens[0] == "episode") {
-            // cout<<"episode\n";
             int ID = stoi(tokens[1]);
             string title = tokens[2];
             int season = stoi(tokens[3]);
