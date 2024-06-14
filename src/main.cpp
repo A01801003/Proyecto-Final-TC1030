@@ -66,14 +66,23 @@ int main() {
                 break;
             }
             case 6: {
-                string title;
-                float rating;
-                cout << "Enter title of the video: ";
-                cin.ignore();
-                getline(cin, title);
-                cout << "Enter rating: ";
-                cin >> rating;
-                engine.rateVideo(title, rating);
+                try {
+                    string title;
+                    float rating;
+                    cout << "Enter title of the video: ";
+                    cin.ignore();
+                    getline(cin, title);
+                    cout << "Enter rating: ";
+                    cin >> rating;
+                    if (rating > 5 || rating < 0) {
+                        throw invalid_argument("Invalid rating. Rating should be between 0 and 5.");
+                    } else {
+                        engine.rateVideo(title, rating);
+                    }
+
+                } catch (const std::exception& e) {
+                    std::cerr << e.what() << '\n';
+                }
                 break;
             }
             default:
