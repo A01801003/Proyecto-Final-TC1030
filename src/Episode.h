@@ -14,6 +14,7 @@ class Episode : public Video
     float getRating() override;
     int getSeason();
     string getLength();
+    void setRating(float rating);
 };
 
 #endif

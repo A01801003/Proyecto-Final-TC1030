@@ -14,6 +14,7 @@ class Movie : public Video
     float getRating() override;
     string getLength();
     Genre getGenre();
+    void setRating(float rating);
 };
 
 #endif

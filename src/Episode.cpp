@@ -13,3 +13,7 @@ int Episode::getSeason() {
 string Episode::getLength() {
     return length_;
 }
+
+void Episode::setRating(float rating) {
+    rating_ = rating;
+}

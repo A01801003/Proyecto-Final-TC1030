@@ -17,6 +17,7 @@ class Series : public Video
     Genre getGenre();
     vector<Episode> getEpisodes();
     void addEpisode(Episode episode);
+    Series& operator+(const Episode& episode);
 };
 
 #endif

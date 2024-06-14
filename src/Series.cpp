@@ -21,3 +21,8 @@ Genre Series::getGenre() {
 vector<Episode> Series::getEpisodes() {
     return episodes_;
 }
+
+Series& Series::operator+(const Episode& episode) {
+    this->addEpisode(episode);
+    return *this;
+}

@@ -13,3 +13,7 @@ string Movie::getLength() {
 Genre Movie::getGenre() {
     return genre_;
 }
+
+void Movie::setRating(float rating) {
+    rating_ = rating;
+}

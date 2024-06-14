@@ -22,6 +22,11 @@ class VideoEngine
     void printByTitle(string title);
     vector<string> split(string& str, char delimiter);
     void loadVideos(string filename);
+    void filterVideosByGenre(string genre);
+    void filterVideosByRating(float rating);
+    void filterEpisodesByRating(string seriesTitle, float rating);
+    void rateVideo(string title, float rating);
+    void filterMoviesByRating(float rating);
 };
 
 #endif

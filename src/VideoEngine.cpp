@@ -66,9 +66,82 @@ void VideoEngine::loadVideos(string filename) {
             string duration = tokens[4];
             float rating = stof(tokens[5]);
             Episode episode(ID, title, season, duration, rating);
-            series_.back().addEpisode(episode);
+            series_.back() + episode;
         }
     }
 
     file.close();
+}
+
+void VideoEngine::filterVideosByGenre(string genre) {
+    for (Movie movie : movies_) {
+        if (genreToString(movie.getGenre()) == genre) {
+            cout << movie.getTitle() << " (" << genreToString(movie.getGenre()) << ") - " << movie.getRating() << "/5" << " - " << movie.getLength() << endl;
+        }
+    }
+
+    for (Series series : series_) {
+        if (genreToString(series.getGenre()) == genre) {
+            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+            for (Episode episode : series.getEpisodes()) {
+                cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
+            }
+        }
+    }
+}
+
+void VideoEngine::filterVideosByRating(float rating) {
+    for (Movie movie : movies_) {
+        if (movie.getRating() == rating) {
+            cout << movie.getTitle() << " (" << genreToString(movie.getGenre()) << ") - " << movie.getRating() << "/5" << " - " << movie.getLength() << endl;
+        }
+    }
+
+    for (Series series : series_) {
+        for (Episode episode : series.getEpisodes()) {
+            if (episode.getRating() == rating) {
+                cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+                cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
+            }
+        }
+    }
+}
+
+void VideoEngine::filterEpisodesByRating(string seriesTitle, float rating) {
+    for (Series series : series_) {
+        if (series.getTitle() == seriesTitle) {
+            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+            for (Episode episode : series.getEpisodes()) {
+                if (episode.getRating() == rating) {
+                    cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
+                }
+            }
+        }
+    }
+}
+
+void VideoEngine::rateVideo(string title, float rating) {
+    for (Movie& movie : movies_) {
+        if (movie.getTitle() == title) {
+            movie.setRating(rating);
+            return;
+        }
+    }
+
+    for (Series& series : series_) {
+        for (Episode& episode : series.getEpisodes()) {
+            if (episode.getTitle() == title) {
+                episode.setRating(rating);
+                return;
+            }
+        }
+    }
+}
+
+void VideoEngine::filterMoviesByRating(float rating) {
+    for (Movie movie : movies_) {
+        if (movie.getRating() == rating) {
+            cout << movie.getTitle() << " (" << genreToString(movie.getGenre()) << ") - " << movie.getRating() << "/5" << " - " << movie.getLength() << endl;
+        }
+    }
 }
