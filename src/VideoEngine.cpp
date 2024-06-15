@@ -8,7 +8,7 @@ void VideoEngine::printMovies() {
 
 void VideoEngine::printSeries() {
     for (Series series : series_) {
-        cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+        cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ") " << series.getRating() << endl;
         for (Episode episode : series.getEpisodes()) {
             cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
         }
@@ -79,7 +79,7 @@ void VideoEngine::filterVideosByGenre(string genre) {
 
     for (Series series : series_) {
         if (genreToString(series.getGenre()) == genre) {
-            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ") " << series.getRating() << endl;
             for (Episode episode : series.getEpisodes()) {
                 cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
             }
@@ -97,7 +97,7 @@ void VideoEngine::filterVideosByRating(float rating) {
     for (Series series : series_) {
         for (Episode episode : series.getEpisodes()) {
             if (episode.getRating() == rating) {
-                cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+                cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ") " << series.getRating() << endl;
                 cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
             }
         }
@@ -107,7 +107,7 @@ void VideoEngine::filterVideosByRating(float rating) {
 void VideoEngine::filterEpisodesByRating(string seriesTitle, float rating) {
     for (Series series : series_) {
         if (series.getTitle() == seriesTitle) {
-            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ")" << endl;
+            cout << series.getTitle() << " (" << genreToString(series.getGenre()) << ") " << series.getRating() << endl;
             for (Episode episode : series.getEpisodes()) {
                 if (episode.getRating() == rating) {
                     cout << "  " << episode.getTitle() << " - " << episode.getRating() << "/5" << " - season " << episode.getSeason() << " - " << episode.getLength() << endl;
